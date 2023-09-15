@@ -26,6 +26,13 @@ sql.connect(config)
     console.error('Lỗi kết nối đến SQL Server:', err);
   });
 
+// Middleware để bật CORS
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 // Định nghĩa route để lấy danh sách từ bảng "Region"
 app.get('/regions', (req, res) => {
   const request = new sql.Request();
