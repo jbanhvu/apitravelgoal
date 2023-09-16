@@ -2,6 +2,7 @@
 
 const express = require('express');
 const admin = require('firebase-admin');
+const cors = require('cors'); 
 
 // Khởi tạo Firebase Admin SDK với cấu hình từ tệp serviceAccountKey.json
 const serviceAccount = require('./serviceAccountKey.json');
@@ -13,6 +14,9 @@ admin.initializeApp({
 
 const app = express();
 const db = admin.firestore();
+
+// Sử dụng middleware Cors
+app.use(cors());
 
 // Định tuyến để lấy dữ liệu từ collection "Regions"
 app.get('/regions', async (req, res) => {
